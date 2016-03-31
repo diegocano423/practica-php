@@ -3,10 +3,16 @@ angular.module('practicaPHP01.controllers')
      * Inicia la sesión del usuario en el sistema.
      */
     .controller('LoginController', ['$scope', 'UserService', '$location',
-        function ($scope, UserService, $location) {
+        function($scope, UserService, $location) {
             $scope.init = function() {
                 console.debug('Login');
+                UserService.IsLoggedIn;
 
+                var hasSession = UserService.IsLoggedIn;
+
+                if (hasSession) {
+                    $location.path('#/home');
+                }
                 /**
                  * TODO: Implementar
                  * Pasos
@@ -18,6 +24,9 @@ angular.module('practicaPHP01.controllers')
                  * - Agregue las validaciones necesarias: contenido vacio, correo en formato de correo.
                  * - Provea mensajes de error descriptivos.
                  */
+            };
+            $scope.logIn = function(){
+           
             };
 
             $scope.init();

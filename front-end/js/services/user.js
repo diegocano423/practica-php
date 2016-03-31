@@ -1,18 +1,19 @@
 angular.module('practicaPHP01.services')
-    /**
-     * Encargado de todas las operaciones relacionadas con los usuarios.
-     */
-    .service('UserService', ['$http', 'ClientStorage', function ($http, ClientStorage) {
-        /**
-         *
-         * @param email
-         * @param password
-         */
+    .service('UserService', ['$http', 'ClientStorage', '$location', function ($http, ClientStorage, $location) {
+        var absoluteUrl = $location.absUrl();
         var login = function(email, password) {
             var result = {
                 success: false,
                 message: null
             };
+
+            if (email && password) {
+                return $http({
+                    method: 'POST',
+                    url: absoluteUrl + '/back-end/user/login',
+                    data: {"email": email, "password": password},
+                })
+            }
 
             /**
              * TODO: Implementar
@@ -99,6 +100,15 @@ angular.module('practicaPHP01.services')
                 success: false,
                 message: null
             };
+
+            var currentSession = ClientStorage.get('phpSession');
+
+            if (currentSession){
+                result.success = true;
+                result.message = 'Active session';
+            } else {
+                result.message = 'No active session.';
+            }
 
             /**
              * TODO: Implementar

@@ -4,17 +4,19 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-body">
-        <form novalidate autocomplete="off" name="login">
+        <form novalidate="novalidate" name="loginForm" ng-submit="logIn()" class="form-group">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" placeholder="email" id="email" name="email" class="form-control" />
+                <input type="text" placeholder="email" id="email" name="email" class="form-control" ng-model="usermail" required="required"/>
+                <span ng-show="!loginForm.email.$valid &amp;&amp; loginForm.email.$dirty" class="text-danger">The Email field is required.</span>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" />
+                <input type="password" id="password" name="password" class="form-control" ng-model="user.password" required="required"/>
+                <span ng-show="!loginForm.password.$valid &amp;&amp; loginForm.password.$dirty" class="text-danger">The password is required.</span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block" value="Login">
+                <input type="submit" class="btn btn-primary btn-block" value="Login" ng-disabled="!loginForm.$valid">
             </div>
         </form>
     </div>

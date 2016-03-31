@@ -4,25 +4,29 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-body">
-        <form novalidate autocomplete="off" name="login">
+        <form novalidate="novalidate" name="registerForm" ng-submit="register()" class="form-group">
             <div class="form-group">
-                <label for="email">Name</label>
-                <input type="text" placeholder="Full Name" id="fullName" name="fullName" class="form-control" />
+                <label for="fullName">Name</label>
+                <input type="text" placeholder="Full Name" id="fullName" name="fullName" class="form-control" ng-model="fullName" required="required"/>
+                <span ng-show="!registerForm.fullName.$valid &amp;&amp; registerForm.fullName.$dirty" class="text-danger">Please enter your full name to register an account.</span>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" placeholder="email" id="email" name="email" class="form-control" />
+                <input type="email" placeholder="email" id="email" name="email" class="form-control" ng-model="email" required="required"/>
+                <span ng-show="!registerForm.email.$valid &amp;&amp; registerForm.email.$dirty" class="text-danger">Please enter your email to register an account.</span>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" />
+                <input type="password" id="password" name="password" class="form-control" ng-model="password" required="required"/>
+                <span ng-show="!registerForm.password.$valid &amp;&amp; registerForm.password.$dirty" class="text-danger">Please enter a password for the account.</span>
             </div>
             <div class="form-group">
-                <label for="repeat-password">Repeat Password</label>
-                <input type="password" id="repeat-password" name="repeat-password" class="form-control" />
+                <label for="repeatPassword">Repeat Password</label>
+                <input type="password" id="repeatPassword" name="repeatPassword" class="form-control" ng-model="repeatPassword" required="required"/>
+                <span ng-show="!registerForm.repeatPassword.$valid &amp;&amp; registerForm.repeatPassword.$dirty" class="text-danger">Please repeat your password.</span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block" value="Register">
+                <input type="submit" class="btn btn-primary btn-block" value="Register" ng-disabled="!registerForm.$valid">
             </div>
         </form>
     </div>
